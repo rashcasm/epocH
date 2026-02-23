@@ -12,7 +12,6 @@ export default function Home() {
   const { theme, setTheme } = useTheme();
   const [isLoading, setIsLoading] = useState(true);
 
-  // Handle the loading screen timer (1.5 seconds)
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
@@ -20,7 +19,6 @@ export default function Home() {
     return () => clearTimeout(timer);
   }, []);
 
-  // Smooth scroll to top function
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -83,7 +81,6 @@ export default function Home() {
 
   return (
     <>
-      {/* Premium Loading Screen Overlay */}
       <AnimatePresence>
         {isLoading && (
           <motion.div
@@ -107,22 +104,21 @@ export default function Home() {
 
       <main className="min-h-screen bg-neutral-50 dark:bg-black text-neutral-600 dark:text-neutral-300 selection:bg-black/10 dark:selection:bg-white/20 overflow-hidden font-sans transition-colors duration-300">
         
-        {/* Sleek Floating Animated Navbar */}
+        {/* Mobile-Optimized Navbar */}
         <motion.nav 
           initial={{ y: -100, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, ease: "easeOut", delay: isLoading ? 1.2 : 0 }}
-          className="fixed top-6 inset-x-0 max-w-fit mx-auto z-50 rounded-full border border-neutral-200 dark:border-white/10 bg-white/60 dark:bg-black/40 backdrop-blur-md px-6 py-3 flex items-center gap-6 shadow-[0_0_20px_rgba(0,0,0,0.05)] dark:shadow-[0_0_20px_rgba(255,255,255,0.05)]"
+          className="fixed top-4 sm:top-6 inset-x-4 sm:inset-x-0 sm:max-w-fit mx-auto z-50 rounded-full border border-neutral-200 dark:border-white/10 bg-white/80 dark:bg-black/60 backdrop-blur-md px-4 sm:px-6 py-3 flex items-center justify-between sm:justify-center gap-4 sm:gap-6 shadow-[0_0_20px_rgba(0,0,0,0.05)] dark:shadow-[0_0_20px_rgba(255,255,255,0.05)]"
         >
-          {/* Logo Button - Clicks to top smoothly */}
           <button 
             onClick={scrollToTop}
-            className="text-xl font-bold text-neutral-900 dark:text-white tracking-tighter hover:opacity-70 transition-opacity focus:outline-none"
+            className="text-xl font-bold text-neutral-900 dark:text-white tracking-tighter hover:opacity-70 transition-opacity focus:outline-none shrink-0"
           >
             epocH<span className="text-neutral-400 dark:text-neutral-500">.</span>
           </button>
           
-          <div className="flex gap-4 sm:gap-6 items-center border-l border-neutral-200 dark:border-white/10 pl-4 sm:pl-6">
+          <div className="flex gap-3 sm:gap-6 items-center sm:border-l sm:border-neutral-200 sm:dark:border-white/10 sm:pl-6 shrink-0">
             <Link href="#process" className="text-sm font-medium text-neutral-600 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white transition-colors hidden md:block">
               Process
             </Link>
@@ -132,9 +128,10 @@ export default function Home() {
             <Link 
               href="https://wa.me/919356274667" 
               target="_blank" 
-              className="text-sm font-semibold bg-neutral-900 dark:bg-white text-white dark:text-black px-5 py-2 rounded-full hover:bg-neutral-800 dark:hover:bg-neutral-200 transition-all hover:scale-105 active:scale-95 whitespace-nowrap"
+              className="text-xs sm:text-sm font-semibold bg-neutral-900 dark:bg-white text-white dark:text-black px-4 sm:px-5 py-2 rounded-full hover:bg-neutral-800 dark:hover:bg-neutral-200 transition-all hover:scale-105 active:scale-95 whitespace-nowrap"
             >
-              Get an Audit
+              <span className="hidden sm:inline">Get an Audit</span>
+              <span className="sm:hidden">Audit</span>
             </Link>
             
             <button
@@ -149,7 +146,7 @@ export default function Home() {
         </motion.nav>
 
         {/* Hero Section */}
-        <section className="relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden bg-neutral-50 dark:bg-black px-4 transition-colors duration-300">
+        <section className="relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden bg-neutral-50 dark:bg-black px-4 pt-20 transition-colors duration-300">
           <div className="absolute inset-0 opacity-80 dark:opacity-100 mix-blend-multiply dark:mix-blend-normal pointer-events-auto">
             <BackgroundRippleEffect />
           </div>
@@ -158,24 +155,24 @@ export default function Home() {
             initial={{ opacity: 0, y: 40 }}
             animate={isLoading ? { opacity: 0, y: 40 } : { opacity: 1, y: 0 }}
             transition={{ delay: 0.6, duration: 0.8, ease: "easeInOut" }}
-            className="relative z-10 flex flex-col items-center mt-20 pointer-events-none"
+            className="relative z-10 flex flex-col items-center mt-12 sm:mt-20 pointer-events-none w-full"
           >
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white dark:bg-white/5 border border-neutral-200 dark:border-white/10 text-xs text-neutral-500 dark:text-neutral-400 mb-6 uppercase tracking-widest backdrop-blur-sm shadow-sm">
+            <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 rounded-full bg-white dark:bg-white/5 border border-neutral-200 dark:border-white/10 text-[10px] sm:text-xs text-neutral-500 dark:text-neutral-400 mb-6 uppercase tracking-widest backdrop-blur-sm shadow-sm text-center">
               General Software Engineering & Architecture
             </div>
             
-            <h1 className="text-5xl md:text-8xl font-bold tracking-tighter text-neutral-900 dark:text-white text-center max-w-5xl leading-[1.1]">
+            <h1 className="text-[2.5rem] leading-[1.1] sm:text-6xl md:text-8xl font-bold tracking-tighter text-neutral-900 dark:text-white text-center max-w-5xl">
               You scale the business. <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-b from-neutral-400 to-neutral-800 dark:from-neutral-200 dark:to-neutral-600">
                 We build the engine.
               </span>
             </h1>
             
-            <p className="text-lg md:text-xl text-neutral-600 dark:text-neutral-400 max-w-2xl text-center mt-6 mb-10 font-light leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl text-neutral-600 dark:text-neutral-400 max-w-2xl text-center mt-6 mb-10 font-light leading-relaxed px-2">
               epocH is a specialized technical agency. Whether you need high-scale Web2 infrastructure, automated Python trading pipelines, or systems built close to the metal, we ship production-ready code.
             </p>
             
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto pointer-events-auto">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto pointer-events-auto px-4 sm:px-0">
               <Link 
                 href="https://wa.me/919356274667" 
                 className="px-8 py-4 rounded-full bg-neutral-900 dark:bg-white text-white dark:text-black font-semibold hover:bg-neutral-800 dark:hover:bg-neutral-200 transition-all hover:scale-105 w-full sm:w-auto text-center flex items-center justify-center gap-2 shadow-lg dark:shadow-[0_0_30px_-10px_rgba(255,255,255,0.3)] group"
@@ -192,22 +189,22 @@ export default function Home() {
           </motion.div>
         </section>
 
-        {/* Infinite Tech Stack Marquee */}
-        <section className="relative z-10 py-10 border-y border-neutral-200 dark:border-white/5 bg-white/50 dark:bg-white/[0.02] backdrop-blur-sm overflow-hidden flex [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
+        {/* Marquee (Smoother gap for mobile) */}
+        <section className="relative z-10 py-6 sm:py-10 border-y border-neutral-200 dark:border-white/5 bg-white/50 dark:bg-white/[0.02] backdrop-blur-sm overflow-hidden flex [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
           <motion.div
             animate={{ x: ["0%", "-50%"] }}
             transition={{ repeat: Infinity, ease: "linear", duration: 25 }}
-            className="flex flex-none gap-12 pr-12"
+            className="flex flex-none gap-8 sm:gap-12 pr-8 sm:pr-12"
           >
             {[...techStack, ...techStack].map((tech, idx) => (
-              <div key={idx} className="text-xl md:text-2xl font-bold text-neutral-400 dark:text-neutral-600 tracking-tight">
+              <div key={idx} className="text-lg sm:text-xl md:text-2xl font-bold text-neutral-400 dark:text-neutral-600 tracking-tight">
                 {tech}
               </div>
             ))}
           </motion.div>
         </section>
 
-        {/* Trust & Metrics Banner */}
+        {/* Metrics Banner (Responsive Dividers) */}
         <motion.section 
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -215,17 +212,18 @@ export default function Home() {
           transition={{ duration: 0.6 }}
           className="py-12 px-6 border-b border-neutral-200 dark:border-white/5 bg-neutral-100/50 dark:bg-neutral-900/20"
         >
-          <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-around items-center gap-8 text-center">
+          <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-around items-center gap-6 md:gap-8 text-center">
             <div>
               <h4 className="text-3xl font-bold text-neutral-900 dark:text-white mb-1">100%</h4>
               <p className="text-sm font-medium text-neutral-500 uppercase tracking-wider">IP Ownership</p>
             </div>
-            <div className="hidden md:block w-px h-12 bg-neutral-300 dark:bg-white/10"></div>
+            {/* Horizontal on mobile, vertical on desktop */}
+            <div className="w-12 h-px md:w-px md:h-12 bg-neutral-300 dark:bg-white/10"></div>
             <div>
               <h4 className="text-3xl font-bold text-neutral-900 dark:text-white mb-1">0 to MVP</h4>
               <p className="text-sm font-medium text-neutral-500 uppercase tracking-wider">In Record Time</p>
             </div>
-            <div className="hidden md:block w-px h-12 bg-neutral-300 dark:bg-white/10"></div>
+            <div className="w-12 h-px md:w-px md:h-12 bg-neutral-300 dark:bg-white/10"></div>
             <div>
               <h4 className="text-3xl font-bold text-neutral-900 dark:text-white mb-1">Direct</h4>
               <p className="text-sm font-medium text-neutral-500 uppercase tracking-wider">Engineer Access</p>
@@ -234,20 +232,20 @@ export default function Home() {
         </motion.section>
 
         {/* Process Section */}
-        <section id="process" className="py-32 px-6 max-w-7xl mx-auto relative z-10 border-b border-neutral-200 dark:border-white/5">
+        <section id="process" className="py-20 md:py-32 px-6 max-w-7xl mx-auto relative z-10 border-b border-neutral-200 dark:border-white/5">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-20"
+            className="text-center mb-12 md:mb-20"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-neutral-900 dark:text-white tracking-tight mb-4">How We Operate</h2>
-            <p className="text-neutral-600 dark:text-neutral-400 font-light text-lg max-w-2xl mx-auto">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-neutral-900 dark:text-white tracking-tight mb-4">How We Operate</h2>
+            <p className="text-neutral-600 dark:text-neutral-400 font-light text-base sm:text-lg max-w-2xl mx-auto">
               We don&apos;t do endless discovery phases. We audit, we plan, and we execute.
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 relative">
             <div className="hidden md:block absolute top-12 left-[15%] right-[15%] h-px bg-neutral-200 dark:bg-white/10"></div>
             
             {[
@@ -260,39 +258,39 @@ export default function Home() {
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.2 }}
-                className="relative pt-8 text-center md:text-left z-10"
+                transition={{ duration: 0.5, delay: idx * 0.1 }}
+                className="relative text-center md:text-left z-10"
               >
-                <div className={`w-16 h-16 mx-auto md:mx-0 rounded-full flex items-center justify-center mb-6 shadow-sm border-2 
+                <div className={`w-14 h-14 sm:w-16 sm:h-16 mx-auto md:mx-0 rounded-full flex items-center justify-center mb-6 shadow-sm border-2 
                   ${step.isSolid ? 'bg-neutral-900 dark:bg-white border-neutral-900 dark:border-white' : 'bg-white dark:bg-black border-neutral-200 dark:border-white/10'}`}>
                   {step.icon}
                 </div>
-                <h3 className="text-xl font-bold text-neutral-900 dark:text-white mb-3">{step.title}</h3>
-                <p className="text-neutral-600 dark:text-neutral-400 leading-relaxed">{step.desc}</p>
+                <h3 className="text-lg sm:text-xl font-bold text-neutral-900 dark:text-white mb-3">{step.title}</h3>
+                <p className="text-neutral-600 dark:text-neutral-400 text-sm sm:text-base leading-relaxed">{step.desc}</p>
               </motion.div>
             ))}
           </div>
         </section>
 
-        {/* Philosophy / Code execution section */}
-        <section id="philosophy" className="py-32 px-6 max-w-7xl mx-auto relative z-10">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+        {/* Philosophy Section */}
+        <section id="philosophy" className="py-20 md:py-32 px-6 max-w-7xl mx-auto relative z-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center">
             <motion.div
-              initial={{ opacity: 0, x: -40 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <h2 className="text-4xl md:text-5xl font-bold text-neutral-900 dark:text-white tracking-tight mb-6">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-neutral-900 dark:text-white tracking-tight mb-6">
                 You focus on the product.<br />We handle the complexity.
               </h2>
-              <p className="text-neutral-600 dark:text-neutral-400 text-lg leading-relaxed mb-6">
+              <p className="text-neutral-600 dark:text-neutral-400 text-base sm:text-lg leading-relaxed mb-6">
                 We don&apos;t just write code; we architect systems. We know that as a startup, your runway is limited and speed is your only moat. 
               </p>
               <ul className="space-y-4 mb-8">
                 {['Zero BS execution', 'Scalable architecture from Day 1', 'Direct communication with engineers'].map((item, i) => (
-                  <li key={i} className="flex items-center gap-3 text-neutral-700 dark:text-neutral-300 font-medium">
-                    <CheckCircle2 className="w-5 h-5 text-neutral-900 dark:text-white" />
+                  <li key={i} className="flex items-center gap-3 text-neutral-700 dark:text-neutral-300 font-medium text-sm sm:text-base">
+                    <CheckCircle2 className="w-5 h-5 text-neutral-900 dark:text-white shrink-0" />
                     {item}
                   </li>
                 ))}
@@ -306,15 +304,17 @@ export default function Home() {
             </motion.div>
             
             <motion.div 
-              initial={{ opacity: 0, x: 40 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="bg-white dark:bg-white/5 border border-neutral-200 dark:border-white/10 rounded-3xl p-8 relative overflow-hidden shadow-sm dark:shadow-none"
+              className="bg-white dark:bg-white/5 border border-neutral-200 dark:border-white/10 rounded-3xl p-6 sm:p-8 relative overflow-hidden shadow-sm dark:shadow-none w-full"
             >
                <div className="absolute top-0 right-0 w-64 h-64 bg-neutral-100 dark:bg-white/5 blur-[100px] rounded-full"></div>
-               <pre className="text-sm text-neutral-600 dark:text-neutral-400 overflow-x-auto font-mono relative z-10">
-                 <code>
+               {/* Fixed pre overflow for mobile */}
+               <div className="overflow-x-auto relative z-10 w-full">
+                 <pre className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 font-mono">
+                   <code>
 {`// epocH Execution Model
 
 async function scaleStartup(idea) {
@@ -331,22 +331,23 @@ async function scaleStartup(idea) {
     return "Outpaced.";
   }
 }`}
-                 </code>
-               </pre>
+                   </code>
+                 </pre>
+               </div>
             </motion.div>
           </div>
         </section>
 
         {/* Services Section */}
-        <section id="services" className="py-24 px-6 max-w-7xl mx-auto relative z-10 border-t border-neutral-200 dark:border-white/5">
+        <section id="services" className="py-20 md:py-24 px-6 max-w-7xl mx-auto relative z-10 border-t border-neutral-200 dark:border-white/5">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-12 md:mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-neutral-900 dark:text-white tracking-tight mb-4">Our Arsenal</h2>
-            <p className="text-neutral-600 dark:text-neutral-400 font-light text-lg max-w-2xl mx-auto">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-neutral-900 dark:text-white tracking-tight mb-4">Our Arsenal</h2>
+            <p className="text-neutral-600 dark:text-neutral-400 font-light text-base sm:text-lg max-w-2xl mx-auto">
               We are generalists who master the hard stuff. Full-stack, algorithmic pipelines, and everything in between.
             </p>
           </motion.div>
@@ -354,16 +355,16 @@ async function scaleStartup(idea) {
         </section>
 
         {/* FAQ Section */}
-        <section className="py-32 px-6 max-w-4xl mx-auto relative z-10 border-t border-neutral-200 dark:border-white/5">
+        <section className="py-20 md:py-32 px-6 max-w-4xl mx-auto relative z-10 border-t border-neutral-200 dark:border-white/5">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-12 md:mb-16"
           >
-            <h2 className="text-3xl md:text-5xl font-bold text-neutral-900 dark:text-white tracking-tight mb-4">Common Questions</h2>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-neutral-900 dark:text-white tracking-tight mb-4">Common Questions</h2>
           </motion.div>
-          <div className="grid gap-8">
+          <div className="grid gap-6 md:gap-8">
             {faqs.map((faq, index) => (
               <motion.div 
                 key={index} 
@@ -373,15 +374,15 @@ async function scaleStartup(idea) {
                 transition={{ delay: index * 0.1 }}
                 className="p-6 md:p-8 rounded-2xl border border-neutral-200 dark:border-white/10 bg-white dark:bg-white/[0.02]"
               >
-                <h3 className="text-xl font-bold text-neutral-900 dark:text-white mb-3">{faq.q}</h3>
-                <p className="text-neutral-600 dark:text-neutral-400 leading-relaxed">{faq.a}</p>
+                <h3 className="text-lg sm:text-xl font-bold text-neutral-900 dark:text-white mb-3">{faq.q}</h3>
+                <p className="text-neutral-600 dark:text-neutral-400 text-sm sm:text-base leading-relaxed">{faq.a}</p>
               </motion.div>
             ))}
           </div>
         </section>
 
-        {/* Heavy Bottom CTA */}
-        <section className="py-32 px-6 relative z-10 overflow-hidden border-t border-neutral-200 dark:border-white/5">
+        {/* Bottom CTA */}
+        <section className="py-20 md:py-32 px-6 relative z-10 overflow-hidden border-t border-neutral-200 dark:border-white/5">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_center,rgba(0,0,0,0.02)_0%,transparent_70%)] dark:bg-[radial-gradient(circle_at_bottom_center,rgba(255,255,255,0.05)_0%,transparent_70%)]"></div>
           <motion.div 
             initial={{ opacity: 0, scale: 0.95 }}
@@ -390,26 +391,26 @@ async function scaleStartup(idea) {
             transition={{ duration: 0.5 }}
             className="max-w-4xl mx-auto text-center relative z-20"
           >
-            <h2 className="text-5xl md:text-7xl font-bold text-neutral-900 dark:text-white tracking-tighter mb-8">
+            <h2 className="text-[2.5rem] leading-tight sm:text-5xl md:text-7xl font-bold text-neutral-900 dark:text-white tracking-tighter mb-6 md:mb-8">
               Ready to build?
             </h2>
-            <p className="text-xl text-neutral-600 dark:text-neutral-400 mb-12 font-light max-w-2xl mx-auto">
+            <p className="text-base sm:text-xl text-neutral-600 dark:text-neutral-400 mb-10 md:mb-12 font-light max-w-2xl mx-auto">
               Skip the agency fluff. Let&apos;s get on a call, look at your architecture, and figure out how to build it better and faster.
             </p>
-            <div className="flex flex-col sm:flex-row justify-center gap-6">
+            <div className="flex flex-col justify-center gap-4 sm:gap-6 px-4 sm:px-0">
               <Link 
                 href="https://wa.me/919356274667" 
-                className="px-10 py-5 rounded-full bg-neutral-900 dark:bg-white text-white dark:text-black font-bold text-lg hover:scale-105 shadow-xl dark:shadow-[0_0_40px_-10px_rgba(255,255,255,0.5)] transition-all flex items-center justify-center gap-2 group"
+                className="px-6 sm:px-10 py-4 sm:py-5 rounded-full bg-neutral-900 dark:bg-white text-white dark:text-black font-bold text-base sm:text-lg hover:scale-105 shadow-xl dark:shadow-[0_0_40px_-10px_rgba(255,255,255,0.5)] transition-all flex items-center justify-center gap-2 group w-full sm:w-auto"
               >
-                Claim your Free Tech Audit <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                Claim your Free Tech Audit <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
             </div>
           </motion.div>
         </section>
 
         {/* Footer */}
-        <footer className="py-12 border-t border-neutral-200 dark:border-white/10 flex flex-col items-center justify-center text-neutral-500 dark:text-neutral-600 text-sm gap-4">
-          <span className="text-2xl font-bold text-neutral-300 dark:text-white tracking-tighter dark:opacity-50">epocH.</span>
+        <footer className="py-10 md:py-12 border-t border-neutral-200 dark:border-white/10 flex flex-col items-center justify-center text-neutral-500 dark:text-neutral-600 text-xs sm:text-sm gap-4">
+          <span className="text-xl sm:text-2xl font-bold text-neutral-300 dark:text-white tracking-tighter dark:opacity-50">epocH.</span>
           <p>© {new Date().getFullYear()} epocH Agency. Engineered for scale.</p>
         </footer>
       </main>
