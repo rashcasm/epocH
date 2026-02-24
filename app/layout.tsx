@@ -14,8 +14,31 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "epocH | Technical Agency",
-  description: "Engineering for scaling startups.",
+  title: "epoQ | Elite Technical Agency",
+  description: "We don't just write code; we architect systems. Specialized engineering for scaling startups.",
+  keywords: ["Software Agency", "Web Development", "Python Backtesting", "Rust Systems", "Solana dApps", "AI Agents", "Startup MVP"],
+  openGraph: {
+    title: "epoQ | Elite Technical Agency",
+    description: "You scale the business. We build the engine. Specialized engineering for startups.",
+    url: "https://epoq.devs", // Replace with your actual domain later
+    siteName: "epoQ",
+    images: [
+      {
+        url: "/og-image.png", // We will add this image next
+        width: 1200,
+        height: 630,
+        alt: "epoQ Agency Preview",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "epoQ | Elite Technical Agency",
+    description: "You scale the business. We build the engine.",
+    images: ["/og-image.png"],
+  },
 };
 
 export default function RootLayout({

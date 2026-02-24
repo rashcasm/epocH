@@ -1,18 +1,23 @@
+/* eslint-disable react-hooks/set-state-in-effect */
 "use client";
 
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { useTheme } from "next-themes";
-import { Moon, Sun, ArrowRight, Activity, Code2, Rocket, CheckCircle2 } from "lucide-react";
+import { Moon, Sun, ArrowRight, Activity, Code2, Rocket, CheckCircle2, Twitter, Linkedin, Github, Instagram } from "lucide-react";
 import { HoverEffect } from "@/components/ui/card-hover-effect";
+import GradientBlinds from "@/components/ui/gradient-blinds";
 import { BackgroundRippleEffect } from "@/components/ui/background-ripple-effect";
 
 export default function Home() {
   const { theme, setTheme } = useTheme();
   const [isLoading, setIsLoading] = useState(true);
+  const [mounted, setMounted] = useState(false);
 
+  // Handle Hydration & Loading Screen
   useEffect(() => {
+    setMounted(true); // Ensures WebGL only renders on client
     const timer = setTimeout(() => {
       setIsLoading(false);
     }, 1500);
@@ -96,7 +101,7 @@ export default function Home() {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="text-4xl md:text-6xl font-bold tracking-tighter text-neutral-900 dark:text-white"
             >
-              epocH<span className="text-neutral-400 dark:text-neutral-600">.</span>
+              epoQ<span className="text-neutral-400 dark:text-neutral-600">.</span>
             </motion.div>
           </motion.div>
         )}
@@ -115,7 +120,7 @@ export default function Home() {
             onClick={scrollToTop}
             className="text-xl font-bold text-neutral-900 dark:text-white tracking-tighter hover:opacity-70 transition-opacity focus:outline-none shrink-0"
           >
-            epocH<span className="text-neutral-400 dark:text-neutral-500">.</span>
+            epoQ<span className="text-neutral-400 dark:text-neutral-500">.</span>
           </button>
           
           <div className="flex gap-3 sm:gap-6 items-center sm:border-l sm:border-neutral-200 sm:dark:border-white/10 sm:pl-6 shrink-0">
@@ -145,10 +150,33 @@ export default function Home() {
           </div>
         </motion.nav>
 
-        {/* Hero Section */}
+        {/* Hero Section with WebGL Gradient Blinds */}
         <section className="relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden bg-neutral-50 dark:bg-black px-4 pt-20 transition-colors duration-300">
-          <div className="absolute inset-0 opacity-80 dark:opacity-100 mix-blend-multiply dark:mix-blend-normal pointer-events-auto">
-            <BackgroundRippleEffect />
+          
+          {/* Dynamic Background: Ripple in Light Mode, Blinds in Dark Mode */}
+          <div className="absolute inset-0 pointer-events-auto">
+            {mounted && theme === 'light' && (
+              <div className="absolute inset-0 opacity-70">
+                <BackgroundRippleEffect />
+              </div>
+            )}
+            
+            {mounted && theme === 'dark' && (
+              <GradientBlinds
+                gradientColors={['#000000', '#0a0a0a', '#171717', '#000000']}
+                angle={-15}
+                noise={0.4}
+                blindCount={12}
+                blindMinWidth={60}
+                spotlightRadius={0.7}
+                spotlightSoftness={0.9}
+                spotlightOpacity={0.4}
+                mouseDampening={0.15}
+                distortAmount={0}
+                shineDirection="left"
+                mixBlendMode="normal"
+              />
+            )}
           </div>
           
           <motion.div
@@ -157,11 +185,11 @@ export default function Home() {
             transition={{ delay: 0.6, duration: 0.8, ease: "easeInOut" }}
             className="relative z-10 flex flex-col items-center mt-12 sm:mt-20 pointer-events-none w-full"
           >
-            <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 rounded-full bg-white dark:bg-white/5 border border-neutral-200 dark:border-white/10 text-[10px] sm:text-xs text-neutral-500 dark:text-neutral-400 mb-6 uppercase tracking-widest backdrop-blur-sm shadow-sm text-center">
+            <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 rounded-full bg-white/80 dark:bg-black/50 border border-neutral-200 dark:border-white/10 text-[10px] sm:text-xs text-neutral-500 dark:text-neutral-400 mb-6 uppercase tracking-widest backdrop-blur-md shadow-sm text-center">
               General Software Engineering & Architecture
             </div>
             
-            <h1 className="text-[2.5rem] leading-[1.1] sm:text-6xl md:text-8xl font-bold tracking-tighter text-neutral-900 dark:text-white text-center max-w-5xl">
+            <h1 className="text-[2.5rem] leading-[1.1] sm:text-6xl md:text-8xl font-bold tracking-tighter text-neutral-900 dark:text-white text-center max-w-5xl drop-shadow-sm dark:drop-shadow-none">
               You scale the business. <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-b from-neutral-400 to-neutral-800 dark:from-neutral-200 dark:to-neutral-600">
                 We build the engine.
@@ -169,7 +197,7 @@ export default function Home() {
             </h1>
             
             <p className="text-base sm:text-lg md:text-xl text-neutral-600 dark:text-neutral-400 max-w-2xl text-center mt-6 mb-10 font-light leading-relaxed px-2">
-              epocH is a specialized technical agency. Whether you need high-scale Web2 infrastructure, automated Python trading pipelines, or systems built close to the metal, we ship production-ready code.
+              epoQ is a specialized technical agency. Whether you need high-scale Web2 infrastructure, automated Python trading pipelines, or systems built close to the metal, we ship production-ready code.
             </p>
             
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto pointer-events-auto px-4 sm:px-0">
@@ -181,7 +209,7 @@ export default function Home() {
               </Link>
               <button 
                 onClick={() => document.getElementById('process')?.scrollIntoView({ behavior: 'smooth' })}
-                className="px-8 py-4 rounded-full bg-white/50 dark:bg-transparent border border-neutral-300 dark:border-white/20 text-neutral-900 dark:text-white font-semibold hover:bg-neutral-100 dark:hover:bg-white/5 transition-all w-full sm:w-auto text-center backdrop-blur-md"
+                className="px-8 py-4 rounded-full bg-white/80 dark:bg-black/40 border border-neutral-300 dark:border-white/20 text-neutral-900 dark:text-white font-semibold hover:bg-neutral-100 dark:hover:bg-white/5 transition-all w-full sm:w-auto text-center backdrop-blur-md shadow-sm dark:shadow-none"
               >
                 See how we work
               </button>
@@ -189,7 +217,7 @@ export default function Home() {
           </motion.div>
         </section>
 
-        {/* Marquee (Smoother gap for mobile) */}
+        {/* Marquee */}
         <section className="relative z-10 py-6 sm:py-10 border-y border-neutral-200 dark:border-white/5 bg-white/50 dark:bg-white/[0.02] backdrop-blur-sm overflow-hidden flex [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
           <motion.div
             animate={{ x: ["0%", "-50%"] }}
@@ -204,7 +232,7 @@ export default function Home() {
           </motion.div>
         </section>
 
-        {/* Metrics Banner (Responsive Dividers) */}
+        {/* Metrics Banner */}
         <motion.section 
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -217,7 +245,6 @@ export default function Home() {
               <h4 className="text-3xl font-bold text-neutral-900 dark:text-white mb-1">100%</h4>
               <p className="text-sm font-medium text-neutral-500 uppercase tracking-wider">IP Ownership</p>
             </div>
-            {/* Horizontal on mobile, vertical on desktop */}
             <div className="w-12 h-px md:w-px md:h-12 bg-neutral-300 dark:bg-white/10"></div>
             <div>
               <h4 className="text-3xl font-bold text-neutral-900 dark:text-white mb-1">0 to MVP</h4>
@@ -315,12 +342,12 @@ export default function Home() {
                <div className="overflow-x-auto relative z-10 w-full">
                  <pre className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 font-mono">
                    <code>
-{`// epocH Execution Model
+{`// epoQ Execution Model
 
 async function scaleStartup(idea) {
   try {
-    const architecture = await Epoch.design(idea);
-    const mwp = await Epoch.buildFast(architecture);
+    const architecture = await EpoQ.design(idea);
+    const mwp = await EpoQ.buildFast(architecture);
     
     return mwp.deploy({
       scale: "infinite",
@@ -408,11 +435,44 @@ async function scaleStartup(idea) {
           </motion.div>
         </section>
 
-        {/* Footer */}
-        <footer className="py-10 md:py-12 border-t border-neutral-200 dark:border-white/10 flex flex-col items-center justify-center text-neutral-500 dark:text-neutral-600 text-xs sm:text-sm gap-4">
-          <span className="text-xl sm:text-2xl font-bold text-neutral-300 dark:text-white tracking-tighter dark:opacity-50">epocH.</span>
-          <p>© {new Date().getFullYear()} epocH Agency. Engineered for scale.</p>
+        {/* Mega Footer */}
+        <footer className="relative pt-16 md:pt-24 border-t border-neutral-200 dark:border-white/10 overflow-hidden bg-neutral-50 dark:bg-black flex flex-col justify-between">
+          
+          {/* Social Links & Copyright Bar */}
+          <div className="w-full max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6 mb-12 md:mb-20 relative z-20">
+            <p className="text-neutral-500 dark:text-neutral-400 text-sm font-medium order-2 md:order-1 text-center md:text-left">
+              © {new Date().getFullYear()} epoQ devs. Engineered for scale.
+            </p>
+            
+            <div className="flex items-center gap-6 order-1 md:order-2">
+              <Link href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors" aria-label="Twitter">
+                <Twitter className="w-5 h-5" />
+              </Link>
+              <Link href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors" aria-label="LinkedIn">
+                <Linkedin className="w-5 h-5" />
+              </Link>
+              <Link href="https://github.com" target="_blank" rel="noopener noreferrer" className="text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors" aria-label="GitHub">
+                <Github className="w-5 h-5" />
+              </Link>
+              <Link href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors" aria-label="Instagram">
+                <Instagram className="w-5 h-5" />
+              </Link>
+            </div>
+          </div>
+
+          {/* Massive Glowing Text Block */}
+          {/* FIX: Changed overflow-hidden to overflow-visible and added pb-[5vw] to give tails room */}
+          <div className="w-full relative flex items-end justify-center pointer-events-none select-none overflow-visible mt-10 pb-[5vw]">
+            {/* Ambient glow behind the text */}
+            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-3/4 h-1/2 bg-neutral-400/20 dark:bg-white/10 blur-[100px] rounded-full z-0"></div>
+            
+            {/* FIX: Relaxed leading-[0.75] to leading-[0.85] so the font's bounding box doesn't clip the descenders */}
+            <h2 className="text-[25vw] leading-[0.85] font-bold tracking-tighter text-neutral-900 dark:text-white relative z-10 drop-shadow-sm dark:drop-shadow-[0_0_40px_rgba(255,255,255,0.2)]">
+              epoQ<span className="text-neutral-400 dark:text-neutral-600">.</span>
+            </h2>
+          </div>
         </footer>
+
       </main>
     </>
   );
