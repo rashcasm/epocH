@@ -5,7 +5,7 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { useTheme } from "next-themes";
-import { Moon, Sun, ArrowRight, Activity, Code2, Rocket, CheckCircle2, Twitter, Linkedin, Github, Instagram } from "lucide-react";
+import { Moon, Sun, ArrowRight, Activity, Code2, Rocket, CheckCircle2, Linkedin, Instagram } from "lucide-react";
 import { HoverEffect } from "@/components/ui/card-hover-effect";
 import GradientBlinds from "@/components/ui/gradient-blinds";
 import { BackgroundRippleEffect } from "@/components/ui/background-ripple-effect";
@@ -445,15 +445,15 @@ async function scaleStartup(idea) {
             </p>
             
             <div className="flex items-center gap-6 order-1 md:order-2">
-              <Link href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors" aria-label="Twitter">
+              {/* <Link href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors" aria-label="Twitter">
                 <Twitter className="w-5 h-5" />
-              </Link>
+              </Link> */}
               <Link href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors" aria-label="LinkedIn">
                 <Linkedin className="w-5 h-5" />
               </Link>
-              <Link href="https://github.com" target="_blank" rel="noopener noreferrer" className="text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors" aria-label="GitHub">
+              {/* <Link href="https://github.com" target="_blank" rel="noopener noreferrer" className="text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors" aria-label="GitHub">
                 <Github className="w-5 h-5" />
-              </Link>
+              </Link> */}
               <Link href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors" aria-label="Instagram">
                 <Instagram className="w-5 h-5" />
               </Link>
