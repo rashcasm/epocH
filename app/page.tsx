@@ -441,7 +441,7 @@ async function scaleStartup(idea) {
           {/* Social Links & Copyright Bar */}
           <div className="w-full max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6 mb-12 md:mb-20 relative z-20">
             <p className="text-neutral-500 dark:text-neutral-400 text-sm font-medium order-2 md:order-1 text-center md:text-left">
-              © {new Date().getFullYear()} epoQ devs. Engineered for scale.
+              © {new Date().getFullYear()} epoQ dev. Engineered for scale.
             </p>
             
             <div className="flex items-center gap-6 order-1 md:order-2">
